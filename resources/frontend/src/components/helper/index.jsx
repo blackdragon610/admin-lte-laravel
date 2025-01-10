@@ -22,6 +22,21 @@ export const addWindowClass = (classList) => {
         window.classList.add(classList);
     }
 };
+
+export const checkSidebarClass = (classList) => {
+    const window = document && document.getElementById("sidebar_tab");
+    const sidebar = document && document.getElementsByClassName("sidebar-collapse");
+    console.log(sidebar.length);
+    
+    if (window) {
+        // @ts-ignore
+        if (sidebar.length > 0) {
+            window.style.display = 'block';
+        } else {
+            window.style.display = 'none';
+        }
+    }
+};
 export const useWindowSize = () => {
     const [windowSize, setWindowSize] = useState({
         width: window.innerWidth,
@@ -41,13 +56,51 @@ export const useWindowSize = () => {
     return windowSize;
 };
 export function postData(endpoint, data) {
+    let userData = getItem("userdata");
+    
     let config = {
         headers: {
-            "x-auth-token": getItem("userdata"),
+            "x-auth-token": userData.access_token,
         },
     };
     return new Promise((resolve, reject) => {
         Axios.post(server + endpoint, data, config)
+            .then((res) => {
+                resolve(res);
+            })
+            .catch((err) => {
+                reject(err?.response?.data || "Tidak Terhubung Keserver");
+            });
+    });
+}
+export function multiPostData(endpoint, data) {
+    let userData = getItem("userdata");
+    let config = {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            "x-auth-token": userData.access_token,
+        },
+    };
+    return new Promise((resolve, reject) => {
+        Axios.post(server + endpoint, data, config)
+            .then((res) => {
+                resolve(res);
+            })
+            .catch((err) => {
+                reject(err?.response?.data || "Tidak Terhubung Keserver");
+            });
+    });
+}
+export function getData(endpoint, data) {
+    let userData = getItem("userdata");
+    let config = {
+        headers: {
+            "Content-Type": "application/json",
+            "x-auth-token": userData.access_token,
+        },
+    };
+    return new Promise((resolve, reject) => {
+        Axios.get(server + endpoint, data, config)
             .then((res) => {
                 resolve(res);
             })
@@ -136,6 +189,22 @@ export const getMeta = (metaName) => {
     }
 
     return "";
+};
+export const previewThumbnail = (file) => {
+    return new Promise((resolve, reject) => {
+        let fileType = file.type;
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            // if (fileType.includes("image")) {
+                const imgContent = reader.result;
+                resolve(imgContent);
+            // }
+        };
+        reader.onerror = () => {
+            reject(new Error("Failed to read the file."));
+        };
+    });
 };
 export const LoadingTopBar = (color, progress) => {
     return <LoadingBar color={color || "red"} progress={progress} />;

@@ -1,18 +1,39 @@
-import { Dashboard, DemoTabel, FormControl, Login } from "../../pages";
-import Logout from "../../pages/logout";
+import { DemoTabel, FormControl, Login } from "../../pages";
+import ForgotPassword from "../../pages/forgot-password";
+import Dashboard from "../../pages/shop-manage/dashboard";
+import StaffRegister from "../../pages/shop-manage/register";
+import StaffExit from "../../pages/shop-manage/exit";
 
 const MenuRoutes = [
   {
     path: "/",
     exact: true,
-    title: "Login",
+    title: "ログイン",
     component: () => <Login />
   },
   {
-    path: "/dashboard",
+    path: "/forgot-password",
     exact: true,
-    title: "Dashboard",
+    title: "パスワードリセット",
+    component: () => <ForgotPassword />
+  },
+  {
+    path: "/todo",
+    exact: true,
+    title: "TODO",
     component: () => <Dashboard />
+  },
+  {
+    path: "/staff/register",
+    exact: true,
+    title: "スタッフ登録",
+    component: () => <StaffRegister />
+  },
+  {
+    path: "/staff/exit",
+    exact: true,
+    title: "退会",
+    component: () => <StaffExit />
   },
 
   {

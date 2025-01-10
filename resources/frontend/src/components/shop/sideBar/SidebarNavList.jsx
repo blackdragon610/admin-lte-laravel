@@ -49,7 +49,7 @@ const SidebarNavList = (props) => {
                         {props.data.children ? (
                             <Link
                                 to={props.data.path}
-                                className="nav-link"
+                                className="nav-link nav-link-font"
                                 onClick={handleMainMenuAction}
                                 style={{ cursor: "pointer" }}
                             >
@@ -58,7 +58,7 @@ const SidebarNavList = (props) => {
                         ) : props.data.navheader !== true ? (
                             <Link
                                 to={props.data.path}
-                                className="nav-link"
+                                className="nav-link nav-link-font"
                                 onClick={handleMainMenuAction}
                                 style={{ cursor: "pointer" }}
                             >

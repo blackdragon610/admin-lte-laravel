@@ -5,6 +5,7 @@ import {
     Button,
     Row,
     Col,
+    Link
 } from "../../../components";
 import { reduxForm } from "redux-form";
 import Validate from "../validate";
@@ -16,17 +17,24 @@ let FormLogin = (props) => {
                 component={ReanderField}
                 iconFormGroup="fas fa-envelope"
                 formGroup
-                placeholder="Silahkan Masukan Email"
+                placeholder="メールアドレスまたはログインID"
             />
             <Field
                 name="password"
                 type="text"
                 component={ReanderField}
-                placeholder="Silahkan Masukan Passwsord"
+                placeholder="パスワード"
                 iconFormGroup="fas fa-lock"
                 formGroup
                 customeCss="password-hide-css"
             />
+            <Link
+                aria-label="パスワードを忘れた方はこちら"
+                to="/forgot-password"
+                className="forgot-pwd-link"
+            >
+                パスワードを忘れた方はこちら
+            </Link>
             <Row>
                 <Col size="12">
                     <Button
@@ -35,7 +43,7 @@ let FormLogin = (props) => {
                         type="submit"
                         color="primary"
                         block
-                        title="Sign In"
+                        title="ログイン"
                     />
                 </Col>
             </Row>

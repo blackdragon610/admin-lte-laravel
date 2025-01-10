@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { postData, removeItem, ToastNotification } from "../../components";
+import { postData, removeItem, ToastNotification } from "../../../components";
 import { withRouter } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 

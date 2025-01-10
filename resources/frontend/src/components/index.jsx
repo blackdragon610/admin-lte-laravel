@@ -1,8 +1,10 @@
 import Content from "./content";
 import Router from "./router";
-import Header from "./header";
+import Header from "./shop/header";
+import Top from "./shop/top";
+import Menu from "./shop/menu";
 import Footer from "./footer";
-import Sidebar from "./sideBar";
+import Sidebar from "./shop/sideBar";
 import React, { useState, useEffect } from "react";
 import { Route, withRouter, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -16,12 +18,16 @@ import {
     ReanderField,
     ReanderSelect,
     postData,
+    multiPostData,
+    previewThumbnail,
+    getData,
     setItem,
     getItem,
     ToastNotification,
     removeItem,
     useWindowSize,
     removeWindowClass,
+    checkSidebarClass,
     calculateWindowSize,
     addWindowClass,
 } from "./helper";
@@ -44,7 +50,11 @@ export {
     setItem,
     calculateWindowSize,
     postData,
+    multiPostData,
+    previewThumbnail,
+    getData,
     removeWindowClass,
+    checkSidebarClass,
     Provider,
     BrowserRouter,
     ReactDOM,
@@ -74,6 +84,8 @@ export {
     useEffect,
     Route,
     Header,
+    Top,
+    Menu,
     Footer,
     React,
     useWindowSize,

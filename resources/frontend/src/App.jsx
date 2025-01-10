@@ -2,6 +2,8 @@ import { Suspense, useEffect } from "react";
 import {
     Content,
     Header,
+    Top,
+    Menu,
     Sidebar,
     Footer,
     React,
@@ -14,6 +16,7 @@ import {
     calculateWindowSize,
     useDispatch,
     addWindowClass,
+    checkSidebarClass
 } from "./components/index.jsx";
 import { selectorThemes, selectorUtility, utilityAction } from "./reduxStore";
 import { Redirect } from "react-router-dom";
@@ -42,10 +45,13 @@ const App = () => {
             addWindowClass("sidebar-closed");
             addWindowClass("sidebar-collapse");
         }
+        // checkSidebarClass("sidebar-header");
     }, [windowSize, menuSidebarCollapsed, dispatch, screenSize]);
 
     const content = useSelector(selectorThemes.handleSetContent);
     const header = useSelector(selectorThemes.handleSetPageHeader);
+    const top = useSelector(selectorThemes.handleSetPageHeader);
+    const menu = useSelector(selectorThemes.handleSetPageHeader);
     const sidebar = useSelector(selectorThemes.handleSetPageSidebar);
     const footer = useSelector(selectorThemes.handleSetFooter);
     const progress = useSelector(selectorUtility.progress);
@@ -58,10 +64,13 @@ const App = () => {
         <div className="wrapper">
             {isAuthenticated.length !== 0 ? (
                 <div>
-                    {header && <Header />}
-                    {sidebar && <Sidebar />}
-                    {content && <Content />}
-                    {footer && <Footer />}
+                    {top && <Top />}
+                    {menu && <Menu />}
+                    <div className="wrap">
+                        {header && <Header />}
+                        {sidebar && <Sidebar />}
+                        {content && <Content />}
+                    </div>
                     <LoadingBar color={"red"} progress={progress} />
                     {loading.content && <LoadingContent />}
                 </div>

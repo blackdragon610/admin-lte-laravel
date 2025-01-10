@@ -10,7 +10,7 @@ const PageNotFound = () => {
           </h3>
           <p>
             We could not find the page you were looking for. Meanwhile, you may{' '}
-            <Link to='/dashboard'>return to dashboard</Link> or try using the search form.
+            <Link to='/todo'>return to dashboard</Link> or try using the search form.
           </p>
         </div>
       </div>

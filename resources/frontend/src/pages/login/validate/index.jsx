@@ -1,10 +1,10 @@
 const Validate = (value) => {
     const errors = {};
     if (!value.email) {
-      errors.email = "Email is tequired";
+      errors.email = "メールアドレスまたはログインIDは必須です";
     }
     if (!value.password) {
-      errors.password = "Password is required";
+      errors.password = "パスワードは必須です";
     }
     return errors;
   };
